@@ -1,44 +1,50 @@
-class Char {
-  constructor(charImage){
-    this.charImage = charImage
-    this.charPositions = [
-      [0,0],
-      [220, 0],
-      [440, 0],
-      [660, 0],
-      [0, 270],
-      [220, 270],
-      [440, 270],
-      [660, 270],
-      [0, 540],
-      [220, 540],
-      [440, 540],
-      [660, 540],
-      [0, 810],
-      [220, 810],
-      [440, 810],
-      [660, 810],
-    ]
-    this.currentFrame = 0
-  } 
-  show(){
-    image(
-      this.charImage,
-      0,
-      height - 135,
-      110,
-      135,
-      this.charPositions[this.currentFrame][0],
-      this.charPositions[this.currentFrame][1],
-      220,
-      270
+class Char extends Animate {
+  constructor(
+    matrix,
+    image,
+    x,
+    y,
+    charWidth,
+    charHeight,
+    spriteWidth,
+    spriteHeight,
+  ) {
+    super(
+      matrix,
+      image,
+      x,
+      y,
+      charWidth,
+      charHeight,
+      spriteWidth,
+      spriteHeight,
     )
-    this.animate()
+
+    this.jumpSpeed = 0
+    this.baseY = height - this.charHeight
+    this.gravity = 3
   }
-  animate() {
-    this.currentFrame++
-    if(this.currentFrame >= this.charPositions.length -1) {
-      this.currentFrame = 0
+  jump() {
+    this.jumpSpeed = -30
+  }
+  applyGravity() {
+    this.y = this.y + this.jumpSpeed
+    this.jumpSpeed = this.jumpSpeed + this.gravity
+    if(this.y > this.baseY) {
+      this.y = this.baseY
     }
+  }
+  isColliding(enemy){
+    const precision = .7
+    return collideRectRect(
+      this.x,
+      this.y,
+      this.charWidth * precision,
+      this.charHeight * precision,
+      enemy.x,
+      enemy.y,
+      enemy.charWidth * precision,
+      enemy.charHeight * precision,
+    )
   }
 }
