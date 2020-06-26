@@ -8,6 +8,8 @@ class Char extends Animate {
     charHeight,
     spriteWidth,
     spriteHeight,
+    speed,
+    delay,
   ) {
     super(
       matrix,
@@ -18,33 +20,37 @@ class Char extends Animate {
       charHeight,
       spriteWidth,
       spriteHeight,
+      speed,
+      delay,
     )
 
     this.jumpSpeed = 0
-    this.baseY = height - this.charHeight
-    this.gravity = 3
+    this.baseY = height - this.charHeight - y
+    this.gravity = 5
+    this.jumps = 0
   }
   jump() {
-    this.jumpSpeed = -30
+    if(this.jumps >= 2) return
+    this.jumpSpeed = -40
+    this.jumps++
   }
   applyGravity() {
     this.y = this.y + this.jumpSpeed
     this.jumpSpeed = this.jumpSpeed + this.gravity
     if(this.y > this.baseY) {
       this.y = this.baseY
+      this.jumps = 0
     }
   }
   isColliding(enemy){
-    const precision = .7
-    return collideRectRect(
-      this.x,
-      this.y,
+    const precision = .8
+    return collideCircleCircle(
+      this.x + (this.charWidth/2),
+      this.y + (this.charHeight/2),
       this.charWidth * precision,
-      this.charHeight * precision,
-      enemy.x,
-      enemy.y,
+      enemy.x + (enemy.charWidth/2),
+      enemy.y + (enemy.charHeight/2),
       enemy.charWidth * precision,
-      enemy.charHeight * precision,
     )
   }
 }

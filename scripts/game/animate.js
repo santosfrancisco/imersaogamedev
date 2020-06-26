@@ -8,20 +8,24 @@ class Animate {
     charHeight,
     spriteWidth,
     spriteHeight,
+    speed,
+    delay,
   ) {
+    this.speed = speed || 0
+    this.delay = delay || 0
     this.matrix = matrix
     this.image = image
     this.charWidth = charWidth
     this.charHeight = charHeight
-    this.x = x
-    this.y = height - this.charHeight
+    this.x = x + this.delay
+    this.y = height - this.charHeight - y
     this.spriteWidth = spriteWidth
     this.spriteHeight = spriteHeight
 
     this.currentFrame = 0
   }
 
-    show(){
+  show(){
     image(
       this.image,
       this.x,
