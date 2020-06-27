@@ -9,15 +9,13 @@ class Animate {
     spriteWidth,
     spriteHeight,
     speed,
-    delay,
   ) {
     this.speed = speed || 0
-    this.delay = delay || 0
     this.matrix = matrix
     this.image = image
     this.charWidth = charWidth
     this.charHeight = charHeight
-    this.x = x + this.delay
+    this.x = x
     this.y = height - this.charHeight - y
     this.spriteWidth = spriteWidth
     this.spriteHeight = spriteHeight

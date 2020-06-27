@@ -1,30 +1,41 @@
 let font
-let startScreenImage
+let config
+let introScreenImage
 let button
 let bgs = []
 let bgImages = []
 let gameOverImage
-let gameOver = false
+let health
+let heartImage
+
+let select
+
+let bombermanImage
+let finnImage
+let knightImage
+
 let char
 let charImage
 let score
+let introMusic
 let gameMusic
 let jumpSound
 let enemiesGroupImage
+
 let ovni
 let frog
 let yeti
 
 let scenes
-let currentScene = 'start'
+let currentScene = 'intro'
 
 // scenes
-let start
+let intro
 let game
 
 const enemies = []
 
-const bombermanMatrix = [
+const charMatrix = [
   [0,0],
   [0,0],
   [80,0],

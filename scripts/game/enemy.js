@@ -9,7 +9,6 @@ class Enemy extends Animate {
     spriteWidth,
     spriteHeight,
     speed,
-    delay,
   ) {
     super(
       matrix,
@@ -21,13 +20,12 @@ class Enemy extends Animate {
       spriteWidth,
       spriteHeight,
       speed,
-      delay,
     )
   }
   move(){
     this.x = this.x - this.speed
-    if(this.x < -this.charWidth - this.delay) {
-      this.x = width
-    }
+  }
+  appear(){
+    this.x = width
   }
 }

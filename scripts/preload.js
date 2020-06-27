@@ -1,12 +1,21 @@
 function preload() {
+  config = loadJSON('scripts/config.json')
   for(let i = 1; i <= 6; i++){
-    bgImages[i] = loadImage(`imagens/cenario/bg-parallax/Hills Layer 0${i}.png`)
+    bgImages[i] = loadImage(`images/background/bg-parallax/Hills Layer 0${i}.png`)
   }
-  gameOverImage = loadImage('imagens/assets/game-over.png')
-  charImage = loadImage('imagens/personagem/char.png')
-  enemiesGroupImage = loadImage('imagens/inimigos/enemies.png')
-  startScreenImage = loadImage('imagens/assets/telaInicial.png')
-  font = loadFont('imagens/assets/fonteTelaInicial.otf')
-  gameMusic = loadSound('sons/town.mp3')
+  gameOverImage = loadImage('images/assets/game-over.png')
+  heartImage = loadImage('images/assets/heart.png')
+  
+  bombermanImage = loadImage('images/chars/bomberman.png')
+  finnImage = loadImage('images/chars/finn.png')
+  knightImage = loadImage('images/chars/knight.png')
+  charImage = bombermanImage
+
+  enemiesGroupImage = loadImage('images/enemies/enemies.png')
+  introScreenImage = loadImage('images/assets/telaInicial.png')
+  font = loadFont('images/assets/SkateBrand.otf')
+  
+  gameMusic = loadSound('sons/05 - Toxic Wasteland.mp3')
+  introMusic = loadSound('sons/08 - Welcome to Hell.mp3')
   jumpSound = loadSound('sons/som_pulo.mp3')
 }

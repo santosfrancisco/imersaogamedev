@@ -2,11 +2,12 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(30)
   button = new Button('START', width/2, height/2)
-  start = new Start()
+  intro = new Intro()
   game = new Game()
+  intro.setup()
   game.setup()
   scenes = {
-    start,
+    intro,
     game,
   }
 }

@@ -1,14 +1,16 @@
 class Game {
   constructor() {
-    this.currentEnemy = 0
+    this.index = 0
+    this.map = config.map
   }
   setup() {
     for(let i = 1; i <= 6; i++){
       bgs[i] = new Bg(bgImages[i], i * 2)
     }
+    health = new Health(5, 5)
     score = new Score()
     char = new Char(
-      bombermanMatrix,
+      charMatrix,
       charImage,
       0,
       30,
@@ -27,7 +29,6 @@ class Game {
       80,
       80,
       10,
-      80,
     )
     frog = new Enemy(
       frogMatrix,
@@ -39,7 +40,6 @@ class Game {
       80,
       80,
       10,
-      80,
     )
     yeti = new Enemy(
       yetiMatrix,
@@ -51,7 +51,6 @@ class Game {
       80,
       80,
       12,
-      80,
     )
   
     enemies.push(
@@ -78,27 +77,30 @@ class Game {
       bg.show()
       bg.move()
     })
-  
+    health.draw()
     char.show()
     char.applyGravity()
-    
-    const enemy = enemies[this.currentEnemy]
+    const current = this.map[this.index]
+    const enemy = enemies[current.enemy]
     const isEnemyVisible = enemy.x < -enemy.charWidth
+    enemy.speed = current.speed
     
-    enemy.show()
     enemy.move()
+    enemy.show()
     
     if(isEnemyVisible) {
-      this.currentEnemy = parseInt(random(0, 3))
-      if(this.currentEnemy >= enemies.length) this.currentEnemy = 0
-      enemy.speed = parseInt(random(10,35))
+      this.index++
+      enemy.appear()
+      if(this.index > this.map.length -1) this.index = 0
     }
   
     if(char.isColliding(enemy)) {
-      console.log('colidiu')
-      image(gameOverImage, width*.5 - 200, height*.5)
-      gameOver = true
-      noLoop()
+      health.decreaseLife()
+      char.getImmune()
+      if(health.currentLife === 0) {
+        image(gameOverImage, width*.5 - 200, height*.5)
+        noLoop()
+      }
     }
   
     score.show()

@@ -9,7 +9,6 @@ class Char extends Animate {
     spriteWidth,
     spriteHeight,
     speed,
-    delay,
   ) {
     super(
       matrix,
@@ -21,13 +20,13 @@ class Char extends Animate {
       spriteWidth,
       spriteHeight,
       speed,
-      delay,
     )
 
     this.jumpSpeed = 0
     this.baseY = height - this.charHeight - y
     this.gravity = 5
     this.jumps = 0
+    this.isImmune = false
   }
   jump() {
     if(this.jumps >= 2) return
@@ -42,7 +41,12 @@ class Char extends Animate {
       this.jumps = 0
     }
   }
+  getImmune(){
+    this.isImmune = true
+    setTimeout(() => this.isImmune = false, 1000)
+  }
   isColliding(enemy){
+    if(this.isImmune) return
     const precision = .8
     return collideCircleCircle(
       this.x + (this.charWidth/2),

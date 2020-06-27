@@ -6,13 +6,16 @@ class Button {
 
     this.button = createButton(this.text)
     this.button.mousePressed(() => this._changeScene())
-    this.button.addClass('start-screen-button')
+    this.button.addClass('intro-screen-button')
   }
   draw() {
     this.button.position(this.x , this.y)
   }
   _changeScene() {
     this.button.remove()
+    select.remove()
+    gameMusic.stop()
+    introMusic.loop()
     currentScene = 'game'
   }
 }
