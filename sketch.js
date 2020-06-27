@@ -14,6 +14,9 @@ function setup() {
 
 function keyPressed() {
   game.keyPressed(key)
+  if(key === 'Escape') {
+    window.location.reload()
+  }
 }
 
 function draw() {

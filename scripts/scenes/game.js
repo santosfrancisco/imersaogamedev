@@ -58,8 +58,6 @@ class Game {
       frog,
       yeti
     )
-  
-    gameMusic.loop()
   }
   keyPressed(key) {
     switch (key) {
@@ -73,10 +71,15 @@ class Game {
   return false; // prevent default
   }
   draw() {
-    bgs.forEach(bg => {
+    bgs.forEach((bg, i) => {
+      if(i> 5) return
       bg.show()
       bg.move()
     })
+
+    score.show()
+    score.addPoints()
+
     health.draw()
     char.show()
     char.applyGravity()
@@ -99,11 +102,13 @@ class Game {
       char.getImmune()
       if(health.currentLife === 0) {
         image(gameOverImage, width*.5 - 200, height*.5)
+        textAlign(CENTER)
+        text(`Your score: ${parseInt(score.points)}`, width*.5, height*.5 - 100)
         noLoop()
+        gameMusic.stop()
       }
     }
-  
-    score.show()
-    score.addPoints()
+    bgs[6].show()
+    bgs[6].move()
   }
 }

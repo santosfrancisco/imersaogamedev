@@ -15,7 +15,7 @@ function preload() {
   introScreenImage = loadImage('images/assets/telaInicial.png')
   font = loadFont('images/assets/SkateBrand.otf')
   
-  gameMusic = loadSound('sons/05 - Toxic Wasteland.mp3')
-  introMusic = loadSound('sons/08 - Welcome to Hell.mp3')
+  introMusic = loadSound('sons/05 - Toxic Wasteland.mp3')
+  gameMusic = loadSound('sons/08 - Welcome to Hell.mp3')
   jumpSound = loadSound('sons/som_pulo.mp3')
 }

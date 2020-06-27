@@ -14,8 +14,8 @@ class Button {
   _changeScene() {
     this.button.remove()
     select.remove()
-    gameMusic.stop()
-    introMusic.loop()
+    introMusic.stop()
+    gameMusic.loop()
     currentScene = 'game'
   }
 }

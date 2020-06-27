@@ -4,9 +4,9 @@ class Score {
   }
   show() {
     textAlign(RIGHT)
-    fill('#FFF')
-    textSize(40)
-    text(parseInt(this.points), width - 30, 50)
+    fill('#000')
+    textSize(60)
+    text(parseInt(this.points), width - 30, 70)
   }
   addPoints(){
     this.points = this.points + 0.2

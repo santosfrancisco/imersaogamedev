@@ -10,6 +10,7 @@ class Intro {
     select.option('Finn');
     select.option('Knight');
     select.changed(this.mySelectEvent);
+    introMusic.loop()
   }
   mySelectEvent() {
     let item = select.value();
@@ -54,13 +55,9 @@ class Intro {
   }
 
   draw() {
-    this._sound()
     this._bgImage()
     this._text()
     this._button()
-  }
-  _sound(){
-    // introMusic.loop()
   }
   _bgImage() {
     image(introScreenImage, 0, 0, width, height)
